@@ -2,3 +2,13 @@ when@dev:
     _errors:
         resource: '@FrameworkBundle/Resources/config/routing/errors.xml'
         prefix: /_error
+
+home: ## nom de la route
+    path: / ## url 
+    controller: App\Controller\HomeController::index ## la méthode à appeler
+
+    # composer.json autoload App\ => src/ 
+
+search: 
+    path: /search
+    controller: App\Controller\SearchController::index

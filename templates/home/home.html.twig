@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Location de Véhicules{% endblock %}
+
+{% block body %}
+<h1>Bienvenue sur notre plateforme de location de véhicules</h1>
+
+<form method="post" action="{{ path('search_results') }}">
+    <label for="start_date">Date de début:</label>
+    <input type="date" id="start_date" name="start_date" required>
+
+    <label for="end_date">Date de fin:</label>
+    <input type="date" id="end_date" name="end_date" required>
+
+    <button type="submit">Rechercher</button>
+</form>
+{% endblock %}
