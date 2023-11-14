@@ -7,16 +7,12 @@
 
 <p>Recherche pour la période du {{ start_date }} au {{ end_date }}.</p>
 
-<!-- Liste des véhicules disponibles -->
-{% for vehicule in vehicule %}
-    <div>
-        <h2>{{ vehicule.name }}</h2>
-        <p>{{ vehicule.description }}</p>
-        <p>{{ vehicule.modele }}</p>
-        <p>{{ vehicule.marque }}</p>
-        <!-- Autres détails du véhicule -->
-    </div>
-{% else %}
-    <p>Aucun véhicule disponible pour cette période.</p>
+{% for vehicle in vehicles %}
+<div>
+    <h3>{{ vehicle.titre }}</h3>
+    <p>Marque: {{ vehicle.marque }}</p>
+    <p>Modèle: {{ vehicle.modele }}</p>
+    <!-- Autres détails du véhicule -->
+</div>
 {% endfor %}
 {% endblock %}

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\VehiculeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -10,17 +11,18 @@ use Symfony\Component\Routing\Annotation\Route;
 class SearchController extends AbstractController
 {
     #[Route('/search', name: 'app_search')]
-    public function index(Request $request): Response
+    public function index(Request $request, VehiculeRepository $vehiculeRepository): Response
     {
         $startDate = $request->query->get('start_date');
         $endDate = $request->query->get('end_date');
-    
-        $vehicule = $this->getDoctrine()->getRepository(Vehicule::class)->findAvailableVehicles($startDate, $endDate);
-    
+
+        // Pour le moment, récupérez simplement tous les véhicules
+        $vehicles = $vehiculeRepository->findAll();
+
         return $this->render('search/index.html.twig', [
             'start_date' => $startDate,
             'end_date' => $endDate,
-            'vehicule' => $vehicule, // Les véhicules disponibles
+            'vehicles' => $vehicles, // Les véhicules disponibles
         ]);
     }
 }
