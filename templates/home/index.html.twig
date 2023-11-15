@@ -1,21 +1,94 @@
 {% extends 'base.html.twig' %}
 
-
 {% block title %}Location de Véhicules{% endblock %}
 
-{% block body %}
-<h1>Bienvenue sur notre plateforme de location de véhicules</h1>
+{% block stylesheets %}
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
 
-<form action="{{ path('app_search') }}" method="get">
-    <label for="start_date">Date de début:</label>
-    <input type="date" id="start_date" name="start_date">
+    .bg-image {
+        background-image: url('1.jpg');
+        background-size: cover;
+        background-position: center;
+        background-color: #464646;
+        background-attachment: fixed;
+    }
 
-    <label for="end_date">Date de fin:</label>
-    <input type="date" id="end_date" name="end_date">
+    .bg-darken {
+        position: relative;
+        height: 100%;
+        /* Ajoutez un fond noir semi-transparent par-dessus l'image */
+        background-color: rgba(0, 0, 0, 0.5);
+    }
 
-    <button type="submit">Rechercher</button>
-</form>
+    .search-form {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        max-width: 600px;
+        padding: 20px;
+        /* Couleur de fond semi-transparente en accord avec le fond */
+        background: rgba(255, 255, 255, 0.7); /* blanc avec transparence */
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
 
+    .search-form h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 24px;
+    }
+
+    .search-form label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .search-form input[type=date] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .search-form button[type=submit] {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        background-color: #4CAF50; /* Vert pour la cohérence */
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .search-form button[type=submit]:hover {
+        background-color: #45a049; /* Vert foncé au survol */
+    }
+</style>
 {% endblock %}
 
+{% block body %}
+<div class="bg-image bg-darken">
+    <div class="search-form">
+        <h1>Bienvenue sur notre plateforme de location de véhicules</h1>
+        <form action="{{ path('app_search') }}" method="get">
+            <label for="start_date">Date de début:</label>
+            <input type="date" id="start_date" name="start_date">
 
+            <label for="end_date">Date de fin:</label>
+            <input type="date" id="end_date" name="end_date">
+
+            <button type="submit">Rechercher</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
