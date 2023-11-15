@@ -2,21 +2,87 @@
 
 {% block title %}Résultats de recherche{% endblock %}
 
+{% block stylesheets %}
+<style>
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+        line-height: 1.6;
+    }
+
+ 
+    .search-header {
+        text-align: center;
+        padding: 1rem;
+        background-color: #9f8acc; /* Couleur violette spécifiée */
+        color: white;
+    }
+
+ 
+    .search-results {
+        max-width: 1000px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+  
+    .vehicle {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 20px;
+        align-items: center;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+    }
+
+    .vehicle img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .vehicle-details {
+        padding: 0 15px;
+    }
+
+    .vehicle h3 {
+        margin-top: 0;
+        color: #9f8acc; 
+    }
+
+    .vehicle p {
+        margin: 0.5rem 0;
+        font-weight: bold;
+    }
+</style>
+{% endblock %}
+
 {% block body %}
-<h1>Résultats de recherche</h1>
-
-<p>Recherche pour la période du {{ start_date }} au {{ end_date }}.</p>
-
-{% for vehicle in vehicles %}
-<div>
-    <h3>{{ vehicle.titre }}</h3>
-    <p>Marque: {{ vehicle.marque }}</p>
-    <p>Modèle: {{ vehicle.modele }}</p>
-    <p>titre: {{ vehicle.titre }}</p>
-    <p>description: {{ vehicle.description }}</p>
-    <img src="{{ vehicle.photo }}" />
-
-    <!-- Autres détails du véhicule -->
+<div class="search-header">
+    <h1>Résultats de recherche</h1>
+    <p>Recherche pour la période du {{ start_date }} au {{ end_date }}.</p>
 </div>
-{% endfor %}
+
+<div class="search-results">
+    {% for vehicle in vehicles %}
+    <div class="vehicle">
+        <img src="{{ vehicle.photo }}" alt="Photo de {{ vehicle.titre }}" />
+        <div class="vehicle-details">
+            <h3>{{ vehicle.titre }}</h3>
+            <p>Marque: {{ vehicle.marque }}</p>
+            <p>Modèle: {{ vehicle.modele }}</p>
+            <p>Description: {{ vehicle.description }}</p>
+            <p>Prix journalier: {{ vehicle.prixJournalier }}</p>
+
+            
+            <!-- Autres détails du véhicule -->
+        </div>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}

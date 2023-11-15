@@ -12,3 +12,7 @@ home: ## nom de la route
 search: 
     path: /search
     controller: App\Controller\SearchController::index
+
+ajouter: 
+    path: /ajouter-vehicule
+    controller: App\Controller\AjouterVehiculeController::index
