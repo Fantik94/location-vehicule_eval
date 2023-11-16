@@ -16,3 +16,15 @@ search:
 ajouter: 
     path: /ajouter-vehicule
     controller: App\Controller\AjouterVehiculeController::index
+
+app_register:
+    path: /register
+    controller: App\Controller\RegistrationController::index
+
+app_login:
+    path: /login
+    controller: App\Controller\SecurityController::index
+
+app_logout:
+    path: /logout
+    controller: App\Controller\SecurityController::index
