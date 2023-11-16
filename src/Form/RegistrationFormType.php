@@ -10,20 +10,23 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('pseudo')
-            ->add('mdp', PasswordType::class)
-            ->add('nom')
-            ->add('prenom')
-            ->add('email', EmailType::class)
-            ->add('civilite', CheckboxType::class, [
-                'required' => true,
-                'label'    => 'Homme/Femme',
+        ->add('pseudo')
+        ->add('mdp', PasswordType::class)
+        ->add('nom')
+        ->add('prenom')
+        ->add('email', EmailType::class)
+        ->add('civilite', ChoiceType::class, [
+            'choices'  => [
+                'Homme' => true,
+                'Femme' => false,
+            ],
             ])
             
             ;
