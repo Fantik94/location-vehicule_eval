@@ -1,13 +1,17 @@
 security:
+    enable_authenticator_manager: true
+    # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
         App\Entity\Membre:
             algorithm: bcrypt
 
+    # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
+        # Utilisez l'entité Membre pour charger les utilisateurs
         membres_provider:
             entity:
                 class: App\Entity\Membre
-                property: email
+                property: email # ou 'pseudo' si vous souhaitez vous connecter avec le pseudo
 
     firewalls:
         dev:
@@ -16,17 +20,35 @@ security:
         main:
             lazy: true
             provider: membres_provider
+
+
+
+            logout:
+                path: app_logout # Vous devez créer cette route si ce n'est pas déjà fait
+
+            # Activez la saisie de nom d'utilisateur et le formulaire de connexion
             form_login:
                 login_path: app_login
                 check_path: app_login
-            logout:
-                path: app_logout
-                target: home
 
+            # Activez la fonctionnalité de souvenir de moi
+            remember_me:
+                secret:   '%kernel.secret%'
+                lifetime: 604800 # 1 semaine en secondes
+                path:     /
+
+            # Activez le changement d'utilisateur si nécessaire
+            # switch_user: true
+
+    # Contrôle d'accès
     access_control:
-       # - { path: ^/login$, roles: PUBLIC_ACCESS }
-       # - { path: ^/register$, roles: PUBLIC_ACCESS }
-       # - { path: ^/, roles: ROLE_USER }
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/login, roles: PUBLIC_ACCESS }
+        - { path: ^/register, roles: PUBLIC_ACCESS }
+        - { path: ^/ajouter, roles: ROLE_ADMIN }
+        - { path: ^/search, roles: PUBLIC_ACCESS } 
+        - { path: ^/, roles: PUBLIC_ACCESS } # Accès public à la page d'accueil
 
 # Configurations spécifiques à l'environnement de test
 when@test:

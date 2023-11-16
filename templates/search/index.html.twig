@@ -10,52 +10,53 @@
         color: #333;
         line-height: 1.6;
     }
- 
-    .search-header {
+
+    .search-results-banner {
+        background-image: url('2.jpg');
+        background-size: cover;
+        background-position: center;
+        padding: 40px 0;
         text-align: center;
-        padding: 1rem;
-        background-color: #9f8acc;
         color: white;
+        text-shadow: 1px 1px 2px black;
+        margin-bottom: 30px;
     }
- 
-    .search-results {
-        max-width: 1000px;
-        margin: 20px auto;
-        padding: 20px;
-        background-color: #fff;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    .search-results-banner h1 {
+        margin: 0;
+        font-size: 2.5rem;
     }
-  
+
+    .search-results-banner p {
+        font-size: 1.2rem;
+    }
+
     .vehicle {
         display: grid;
         grid-template-columns: 1fr 3fr;
         gap: 20px;
         align-items: center;
+        background-color: white;
         border-bottom: 1px solid #eee;
-        padding-bottom: 20px;
-        margin-bottom: 20px;
+        padding: 20px;
+        margin: 20px 10%; 
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 40px; /* Espacement ajouté entre les véhicules */
     }
 
     .vehicle img {
         width: 100%;
-        height: auto;
-        border-radius: 10px;
+        border-radius: 8px;
     }
 
     .vehicle-details {
         padding: 0 15px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .vehicle-description {
-        max-width: 80%; /* Ajustez en fonction de la largeur de votre bouton */
     }
 
     .vehicle h3 {
-        margin-top: 0;
         color: #9f8acc;
+        margin: 0;
     }
 
     .vehicle p {
@@ -66,7 +67,6 @@
         font-size: 1.5rem;
         color: #4CAF50;
         font-weight: bold;
-        margin: 10px 0;
     }
 
     .btn-reserver {
@@ -76,8 +76,9 @@
         border: none;
         border-radius: 4px;
         cursor: pointer;
-        text-align: center;
         text-decoration: none;
+        display: inline-block;
+        margin-top: 10px;
     }
 
     .btn-reserver:hover {
@@ -87,23 +88,21 @@
 {% endblock %}
 
 {% block body %}
-<div class="search-header">
+<div class="search-results-banner">
     <h1>Résultats de recherche</h1>
     <p>Recherche pour la période du {{ start_date }} au {{ end_date }}.</p>
 </div>
 
-<div class="search-results">
+<div class="vehicle-results">
     {% for vehicle in vehicles %}
     <div class="vehicle">
         <img src="{{ vehicle.photo }}" alt="Photo de {{ vehicle.titre }}" />
         <div class="vehicle-details">
-            <div class="vehicle-description">
-                <h3>{{ vehicle.titre }}</h3>
-               <p> <strong>Marque: </strong>{{ vehicle.marque }}</p>
-                <p><strong>Modèle:  </strong>{{ vehicle.modele }}</p>
-                <p><strong>Description:  </strong>{{ vehicle.description }}</p>
-                <p class="vehicle-price">Prix journalier: {{ vehicle.prixJournalier }} €</p>
-            </div>
+            <h3>{{ vehicle.titre }}</h3>
+            <p><strong>Marque: </strong>{{ vehicle.marque }}</p>
+            <p><strong>Modèle: </strong>{{ vehicle.modele }}</p>
+            <p><strong>Description: </strong>{{ vehicle.description }}</p>
+            <p class="vehicle-price">Prix journalier: {{ vehicle.prixJournalier }} €</p>
             <a href="#" class="btn-reserver">Réserver</a>
         </div>
     </div>

@@ -1,8 +1,78 @@
-{# templates/security/login.html.twig #}
-
 {% extends 'base.html.twig' %}
 
 {% block title %}Connexion{% endblock %}
+
+{% block stylesheets %}
+<style>
+    .container {
+        max-width: 400px;
+        margin: auto;
+        padding-top: 50px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #4a4a4a;
+        margin-bottom: 30px;
+    }
+
+    form {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    label {
+        font-weight: bold;
+        color: #333;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .btn-primary {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        background-color: #007bff;
+        color: white;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 20px;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-link {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .alert-danger {
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+        padding: 10px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+    }
+</style>
+{% endblock %}
 
 {% block body %}
 <div class="container">
@@ -12,24 +82,20 @@
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    <form action="{{ path('app_login') }}" method="post">
-        <label for="inputUsername">Pseudo ou Email:</label>
-        <input type="text" id="inputUsername" name="_username" value="{{ last_username }}" required autofocus class="form-control">
+    <form action="{{ path('app_login') }}" method="post" class="form-signin">
+        <div class="form-group">
+            <label for="inputUsername">Pseudo ou Email:</label>
+            <input type="text" id="inputUsername" name="_username" value="{{ last_username }}" required autofocus class="form-control">
+        </div>
 
-        <label for="inputPassword">Mot de passe:</label>
-        <input type="password" id="inputPassword" name="_password" required class="form-control">
-
-        {# Si vous voulez utiliser la fonctionnalité de "se souvenir de moi", ajoutez ce champ: #}
-        {# <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Se souvenir de moi
-            </label>
-        </div> #}
+        <div class="form-group">
+            <label for="inputPassword">Mot de passe:</label>
+            <input type="password" id="inputPassword" name="_password" required class="form-control">
+        </div>
 
         <button type="submit" class="btn btn-primary">Connexion</button>
     </form>
 
-    {# Lien vers la page d'inscription #}
-    <p>Vous n'avez pas de compte ? <a href="{{ path('app_register') }}">Inscrivez-vous</a></p>
+    <p class="form-link">Vous n'avez pas de compte ? <a href="{{ path('app_register') }}">Inscrivez-vous</a></p>
 </div>
 {% endblock %}

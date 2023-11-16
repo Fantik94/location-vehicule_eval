@@ -138,7 +138,6 @@ class Membre implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    // Implémentation des méthodes de UserInterface et PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         return $this->statut ? ['ROLE_ADMIN'] : ['ROLE_USER'];
@@ -151,7 +150,6 @@ class Membre implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getSalt(): ?string
     {
-        // Pas nécessaire pour les algorithmes modernes de hachage
         return null;
     }
 
@@ -162,12 +160,11 @@ class Membre implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function eraseCredentials()
     {
-        // Si vous stockez des données sensibles temporaires sur l'utilisateur, effacez-les ici
+        
     }
 
     public function getUserIdentifier(): string
     {
-        // Cette méthode est requise à partir de Symfony 5.3
         return $this->email;
     }
 }
