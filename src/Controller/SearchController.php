@@ -12,17 +12,15 @@ class SearchController extends AbstractController
 {
     #[Route('/search', name: 'app_search')]
     public function index(Request $request, VehiculeRepository $vehiculeRepository): Response
-    {
-        $startDate = $request->query->get('start_date');
-        $endDate = $request->query->get('end_date');
+{
+    $startDate = $request->query->get('start_date');
+    $endDate = $request->query->get('end_date');
+    $vehicles = $vehiculeRepository->findAll();
 
-        // Pour le moment, récupérez simplement tous les véhicules
-        $vehicles = $vehiculeRepository->findAll();
-
-        return $this->render('search/index.html.twig', [
-            'start_date' => $startDate,
-            'end_date' => $endDate,
-            'vehicles' => $vehicles, // Les véhicules disponibles
-        ]);
-    }
+    return $this->render('search/index.html.twig', [
+        'start_date' => $startDate,
+        'end_date' => $endDate,
+        'vehicles' => $vehicles,
+    ]);
+}
 }

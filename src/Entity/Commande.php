@@ -67,6 +67,11 @@ class Commande
         return $this->date_heure_depart;
     }
 
+    public function __construct()
+    {
+        $this->date_enregistrement = new \DateTime(); 
+    }
+
     public function setDateHeureDepart(\DateTimeInterface $date_heure_depart): static
     {
         $this->date_heure_depart = $date_heure_depart;

@@ -28,3 +28,7 @@ app_login:
 app_logout:
     path: /logout
     controller: App\Controller\SecurityController::index
+
+app_reservation:
+    path: /reservation
+    controller: App\Controller\ReservationController::index

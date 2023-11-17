@@ -17,9 +17,10 @@
     {% if not (app.request.attributes.get('_route') in ['app_login', 'app_register']) %}
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-2">
             <div class="container-fluid d-flex justify-content-between">
+                <a class="navbar-brand text-white" href="{{ path('home') }}">Accueil</a>
                 {% if app.user %}
-                    <span class="navbar-text text-white">Bonjour, {{ app.user.prenom }}</span>
                     <div>
+                        <span class="navbar-text text-white me-3">Bonjour, {{ app.user.prenom }}</span>
                         <a class="nav-link d-inline text-white me-3" href="{{ path('app_search') }}">Liste des Véhicules</a>
                         <a class="nav-link d-inline text-white" href="{{ path('app_logout') }}">Déconnexion</a>
                     </div>

@@ -50,6 +50,10 @@ class Membre implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->id_membre;
     }
 
+    public function getId(): ?int {
+        return $this->id_membre;
+    }
+
     public function getPseudo(): ?string
     {
         return $this->pseudo;

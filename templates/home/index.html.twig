@@ -76,16 +76,16 @@
 
 {% block body %}
 <div class="bg-image bg-darken">
-
     <div class="search-form">
         <h1>Bienvenue sur notre plateforme de location de véhicules</h1>
         <form action="{{ path('app_search') }}" method="get">
             <label for="start_date">Date de début:</label>
-            <input type="date" id="start_date" name="start_date">
+            <input type="date" id="start_date" name="start_date" value="{{ "now"|date('Y-m-d') }}">
             <label for="end_date">Date de fin:</label>
             <input type="date" id="end_date" name="end_date">
             <button type="submit">Rechercher</button>
         </form>
     </div>
+    
 </div>
 {% endblock %}
