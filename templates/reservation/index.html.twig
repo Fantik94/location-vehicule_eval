@@ -4,114 +4,114 @@
 
 {% block stylesheets %}
 <style>
+    body {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+        color: #333;
+        line-height: 1.6;
+    }
+
     .container {
-        max-width: 800px;
-        margin: 40px auto;
-        background: #fff;
-        border-radius: 10px;
-        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-        overflow: hidden;
-        font-family: 'Arial', sans-serif;
+        max-width: 700px;
+        background: white;
+        magin-top: 30px;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        background: linear-gradient(to top right, #fbf9fa, #e3e7eb);
     }
 
     .header {
-        background: linear-gradient(135deg, #9575cd 0%, #b39ddb 100%);
-        color: #fff;
         text-align: center;
-        padding: 20px 0;
+        color: #8854d0;
+        margin-bottom: 30px;
     }
 
     .header h1 {
-        margin: 0;
         font-size: 2rem;
     }
 
     .details-section {
-        display: flex;
+        background: #fff;
         padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        margin-bottom: 20px;
     }
 
-    .vehicle-details, .user-details {
-        flex: 1;
-        padding: 20px;
-        background: #f7f7f7;
-        margin: 10px;
+    .details-section img {
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 15px;
         border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-    }
-
-    .vehicle-details img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 4px;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
-    h2 {
-        color: #673ab7;
-        font-size: 1.5rem;
-        margin-bottom: 15px;
-    }
-
-    p {
-        color: #666;
-        line-height: 1.5;
-        margin-bottom: 10px;
-    }
-
-    .btn-primary {
-        display: block;
-        width: 60%;
-        margin: 20px auto;
-        padding: 12px 0;
-        background-color: #7e57c2;
+    .submit-button {
+        background: linear-gradient(45deg, #a55eea, #fbc2eb);
         color: white;
+        padding: 12px 15px;
         border: none;
-        border-radius: 20px;
-        font-size: 1rem;
+        border-radius: 5px;
         cursor: pointer;
-        transition: background-color 0.3s;
+        transition: background-color 0.3s ease;
+        width: 100%;
+        font-size: 1.1rem;
     }
 
-    .btn-primary:hover {
-        background-color: #673ab7;
+    .submit-button:hover {
+        background: linear-gradient(45deg, #b892f7, #f9cbf2);
+    }
+
+    .user-details, .vehicle-details {
+        margin-bottom: 20px;
+    }
+
+    .user-details p, .vehicle-details p {
+        font-size: 1rem;
+        line-height: 1.4;
+        margin: 10px 0;
     }
 </style>
 {% endblock %}
 
 {% block body %}
+<br/>
+
+
+<br/>
+
 <div class="container">
     <div class="header">
         <h1>Synthèse de la Réservation</h1>
     </div>
 
-    <div class="details-section">
-        <div class="vehicle-details">
-            <h2>Informations sur le Véhicule</h2>
-            <img src="{{ vehicle.photo }}" alt="Photo de {{ vehicle.titre }}" />
-            <p>Véhicule : {{ vehicle.titre }}</p>
-            <p>Marque : {{ vehicle.marque }}</p>
-            <p>Modèle : {{ vehicle.modele }}</p>
-            <p>Prix Journalier : {{ vehicle.prixJournalier }} €</p>
-        </div>
-
-        {% if app.user %}
-            <div class="user-details">
-                <h2>Informations sur l'Utilisateur</h2>
-                <p>Nom: {{ app.user.nom }}</p>
-                <p>Email: {{ app.user.email }}</p>
-            </div>
-        {% else %}
-            <!-- Ici, ajoutez les formulaires de connexion et d'inscription -->
-        {% endif %}
+    <div class="vehicle-details details-section">
+        <img src="{{ vehicle.photo }}" alt="Photo de {{ vehicle.titre }}" />
+        <h3>Informations sur le Véhicule</h3>
+        <p><strong>Marque:</strong> {{ vehicle.marque }}</p>
+        <p><strong>Modèle:</strong> {{ vehicle.modele }}</p>
+        <p><strong>Prix Journalier:</strong> {{ vehicle.prixJournalier }} €</p>
     </div>
 
     {% if app.user %}
+        <div class="user-details details-section">
+            <h3>Informations sur l'Utilisateur</h3>
+            <p><strong>Nom:</strong> {{ app.user.nom }}</p>
+            <p><strong>Email:</strong> {{ app.user.email }}</p> 
+        </div>
+
         <form action="{{ path('app_process_reservation', {'id': vehicle.idVehicule}) }}" method="post">
             <input type="hidden" name="start_date" value="{{ start_date }}">
             <input type="hidden" name="end_date" value="{{ end_date }}">
-            <button type="submit" class="btn btn-primary">Valider la réservation</button>
+            <button type="submit" class="submit-button">Valider la réservation</button>
         </form>
+        
+    {% else %}
+        <!-- Ici, ajoutez les formulaires de connexion et d'inscription -->
     {% endif %}
 </div>
+<br/>
+
+
 {% endblock %}

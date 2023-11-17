@@ -21,8 +21,6 @@ security:
             lazy: true
             provider: membres_provider
 
-
-
             logout:
                 path: app_logout # Vous devez créer cette route si ce n'est pas déjà fait
 
@@ -39,7 +37,6 @@ security:
 
             # Activez le changement d'utilisateur si nécessaire
             # switch_user: true
-
     # Contrôle d'accès
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
@@ -49,6 +46,8 @@ security:
         - { path: ^/ajouter, roles: ROLE_ADMIN }
         - { path: ^/search, roles: PUBLIC_ACCESS } 
         - { path: ^/, roles: PUBLIC_ACCESS } # Accès public à la page d'accueil
+
+    
 
 # Configurations spécifiques à l'environnement de test
 when@test:
