@@ -80,12 +80,11 @@
         <h1>Bienvenue sur notre plateforme de location de véhicules</h1>
         <form action="{{ path('app_search') }}" method="get">
             <label for="start_date">Date de début:</label>
-            <input type="date" id="start_date" name="start_date" value="{{ "now"|date('Y-m-d') }}">
+            <input type="date" id="start_date" name="start_date" value="{{ "now"|date('Y-m-d') }}" required>
             <label for="end_date">Date de fin:</label>
-            <input type="date" id="end_date" name="end_date">
+            <input type="date" id="end_date" name="end_date" required>
             <button type="submit">Rechercher</button>
         </form>
     </div>
-    
 </div>
 {% endblock %}
