@@ -36,3 +36,5 @@ app_reservation:
 app_profile:
     path: /profil
     controller: App\Controller\ProfileController::index
+
+

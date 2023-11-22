@@ -5,23 +5,29 @@ use App\Entity\Membre;
 use App\Form\MembreType;
 use App\Repository\CommandeRepository;
 use App\Repository\MembreRepository;
+use App\Repository\VehiculeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class ProfileController extends AbstractController
 {
     private $entityManager;
     private $membreRepository;
     private $commandeRepository;
+    private $vehiculeRepository;
+    private $passwordHasher;
 
-    public function __construct(EntityManagerInterface $entityManager, MembreRepository $membreRepository, CommandeRepository $commandeRepository)
+    public function __construct(EntityManagerInterface $entityManager, MembreRepository $membreRepository, CommandeRepository $commandeRepository, VehiculeRepository $vehiculeRepository, UserPasswordHasherInterface $passwordHasher)
     {
         $this->entityManager = $entityManager;
         $this->membreRepository = $membreRepository;
         $this->commandeRepository = $commandeRepository;
+        $this->vehiculeRepository = $vehiculeRepository;
+        $this->passwordHasher = $passwordHasher;
     }
 
     #[Route('/profil', name: 'app_profile')]
@@ -36,11 +42,22 @@ class ProfileController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Vérifier si le mot de passe a été modifié
+            $newPassword = $form->get('mdp')->getData();
+            if ($newPassword) {
+                $hashedPassword = $this->passwordHasher->hashPassword($user, $newPassword);
+                $user->setMdp($hashedPassword);
+            }
+
             $this->entityManager->flush();
-            // Ajoutez un message flash ou une redirection si nécessaire
+            // Redirection ou message flash après la sauvegarde
         }
 
-        $commandes = $this->commandeRepository->findBy(['id_membre' => $user]);
+        $commandes = $this->commandeRepository->findBy(['id_membre' => $user->getId()]);
+        foreach ($commandes as $commande) {
+            $vehicule = $this->vehiculeRepository->find($commande->getIdVehicule());
+            $commande->vehicule = $vehicule;
+        }
 
         return $this->render('profile/index.html.twig', [
             'user' => $user,

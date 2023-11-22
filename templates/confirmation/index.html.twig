@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Confirmation de Réservation{% endblock %}
+
+{% block stylesheets %}
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f4;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 40px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .container h1 {
+        color: #4a90e2;
+        text-align: center;
+    }
+
+    .confirmation-details {
+        background-color: #e9f5ff;
+        border-left: 5px solid #4a90e2;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 5px;
+    }
+
+    .confirmation-details ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .confirmation-details li {
+        margin-bottom: 10px;
+        font-size: 18px;
+    }
+
+    .vehicle-photo {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+
+    .btn {
+        display: block;
+        width: 200px;
+        margin: 20px auto;
+        padding: 10px;
+        background-color: #4a90e2;
+        color: white;
+        text-align: center;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 18px;
+    }
+
+    .btn:hover {
+        background-color: #3a78c0;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1>Confirmation de Réservation</h1>
+    <p>Merci pour votre réservation, {{ user.prenom }} !</p>
+    
+    <div class="confirmation-details">
+        <h2>Détails de la réservation :</h2>
+        <ul>
+            <li><img src="{{ vehicle.photo }}" alt="Photo de {{ vehicle.titre }}" class="vehicle-photo"></li>
+            <li>Véhicule: {{ vehicle.titre }}</li>
+            <li>Date de début: {{ reservation.dateHeureDepart|date('d/m/Y') }}</li>
+            <li>Date de fin: {{ reservation.dateHeureFin|date('d/m/Y') }}</li>
+            <li>Prix total: {{ reservation.prixTotal }} €</li>
+        </ul>
+    </div>
+    
+    <a href="{{ path('home') }}" class="btn btn-primary">Retour à l'accueil</a>
+</div>
+{% endblock %}

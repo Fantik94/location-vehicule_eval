@@ -1,4 +1,6 @@
 <?php
+// src/Controller/ReservationController.php
+
 namespace App\Controller;
 
 use App\Entity\Commande;
@@ -63,6 +65,23 @@ class ReservationController extends AbstractController
         $entityManager->persist($commande);
         $entityManager->flush();
 
-        return $this->redirectToRoute('confirmation_page');
+        return $this->redirectToRoute('confirmation_page', ['id' => $commande->getIdCommande()]);
+    }
+
+    #[Route('/confirmation/{id}', name: 'confirmation_page')]
+    public function confirmation(int $id, EntityManagerInterface $entityManager): Response
+    {
+        $commande = $entityManager->getRepository(Commande::class)->find($id);
+        if (!$commande) {
+            throw $this->createNotFoundException('Commande non trouvée.');
+        }
+
+        $vehicule = $entityManager->getRepository(Vehicule::class)->find($commande->getIdVehicule());
+
+        return $this->render('confirmation/index.html.twig', [
+            'reservation' => $commande,
+            'vehicle' => $vehicule,
+            'user' => $this->getUser()
+        ]);
     }
 }
