@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1>Profil de {{ user.prenom }}</h1>
+    <ul>
+        <li>Nom : {{ user.nom }}</li>
+        <li>Prénom : {{ user.prenom }}</li>
+        <li>Email : {{ user.email }}</li>
+        <!-- Autres informations -->
+    </ul>
+    <button id="btn-edit-profile">Modifier</button>
+
+    <div id="edit-profile-form" style="display: none;">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit" class="btn btn-primary">Sauvegarder</button>
+        {{ form_end(form) }}
+    </div>
+
+    <h2>Vos Réservations</h2>
+    <ul>
+        {% for commande in commandes %}
+            <li>Réservation {{ commande.idCommande }} - {{ commande.dateHeureDepart|date('d/m/Y') }} à {{ commande.dateHeureFin|date('d/m/Y') }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<script>
+    document.getElementById('btn-edit-profile').addEventListener('click', function() {
+        document.getElementById('edit-profile-form').style.display = 'block';
+    });
+</script>
+{% endblock %}

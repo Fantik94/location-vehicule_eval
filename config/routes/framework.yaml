@@ -32,3 +32,7 @@ app_logout:
 app_reservation:
     path: /reservation
     controller: App\Controller\ReservationController::index
+
+app_profile:
+    path: /profil
+    controller: App\Controller\ProfileController::index
