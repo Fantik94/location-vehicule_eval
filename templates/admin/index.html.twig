@@ -1,0 +1,14 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de bord{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1>Tableau de bord de l'administrateur</h1>
+    <!-- Autres éléments du tableau de bord -->
+
+    <!-- Lien vers la page d'ajout de véhicule -->
+    <a href="{{ path('ajouter_vehicule') }}" class="btn btn-primary">Ajouter un Véhicule</a>
+</div>
+{% endblock %}

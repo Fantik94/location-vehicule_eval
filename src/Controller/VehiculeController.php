@@ -29,7 +29,7 @@ class VehiculeController extends AbstractController
             
             return $this->render('ajouter-vehicule/index.html.twig', [
                 'form' => $form->createView(),
-                'success' => true // Indicateur pour le template pour activer le script de redirection
+                'success' => true 
             ]);
         }
 
