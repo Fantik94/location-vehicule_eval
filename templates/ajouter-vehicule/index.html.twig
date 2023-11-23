@@ -1,12 +1,12 @@
 {# templates/vehicule/ajouter.html.twig #}
 
-{% extends 'base.html.twig' %}
+{% extends 'admin_base.html.twig' %}
 
 {% block title %}Ajouter un Véhicule{% endblock %}
 
 {% block stylesheets %}
+{{ parent() }}
 <style>
-    /* Styles de base pour le conteneur de formulaire */
     .form-container {
         max-width: 600px;
         margin: 20px auto;
@@ -20,9 +20,8 @@
         text-align: center;
         color: #4a4a4a;
         font-family: "Gill Sans", sans-serif;
-        }
+    }
 
-    /* Styles pour les labels et les champs de formulaire */
     .form-container .form-group {
         margin-bottom: 15px;
     }
@@ -33,7 +32,6 @@
         margin-bottom: 5px;
         color: #333;
         font-family: "Gill Sans", sans-serif;
-    
     }
 
     .form-container .form-group input,
@@ -46,29 +44,27 @@
     }
 
     .form-container .form-group textarea {
-        resize: vertical; /* Permet aux utilisateurs de redimensionner verticalement le textarea */
+        resize: vertical;
     }
 
-    /* Styles pour le bouton de soumission */
     .form-container button.btn-primary {
-        background-color: #9f8acc; /* Thème violet */
+        background-color: #9f8acc;
         color: white;
         padding: 10px 15px;
         border: none;
         border-radius: 4px;
         cursor: pointer;
-        display: block; /* Centrer le bouton dans le conteneur */
+        display: block;
         width: 100%;
     }
 
     .form-container button.btn-primary:hover {
-        background-color: #8d79a0; /* Couleur plus foncée au survol */
+        background-color: #8d79a0;
     }
-
 </style>
 {% endblock %}
 
-{% block body %}
+{% block admin_content %}
 <div class="form-container">
     <h1>Ajouter un Véhicule</h1>
 

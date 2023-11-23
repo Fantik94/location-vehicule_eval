@@ -1,0 +1,117 @@
+{# templates/vehicule/gestion.html.twig #}
+
+{% extends 'admin_base.html.twig' %}
+
+{% block title %}Gestion des Véhicules{% endblock %}
+
+{% block admin_content %}
+<style>
+    
+    /* Custom styles for a cleaner, more modern look */
+    .container {
+        background-color: #f9f9f9; 
+        border: none;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        border-radius: 8px;
+        padding-bottom: 20px; /* Add padding to bottom for better spacing */
+    }
+
+    h1 {
+        font-size: 1.75rem;
+        background-color: #007bff; 
+        color: #ffffff;
+        padding: 16px 24px;
+        margin: 0 -24px 20px; /* Extend the header to the edges and add margin to the bottom */
+        border-radius: 8px 8px 0 0;
+    }
+
+    .btn-success {
+        background-color: #28a745; 
+        border-color: #28a745;
+        margin-bottom: 1rem; /* Add space below the button */
+    }
+
+    .btn-success:hover {
+        background-color: #218838;
+        border-color: #1e7e34;
+    }
+
+    .img-fluid {
+        max-height: 150px; 
+        width: 150px;
+        border-radius: 4px; 
+    }
+
+    .btn-sm {
+        font-size: 0.875rem;
+    }
+
+    .btn-primary {
+        margin-right: 8px; 
+    }
+
+    .table th {
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        background-color: #e9ecef; 
+        color: #495057; /* Dark grey color for text */
+    }
+
+    .table td {
+        vertical-align: middle;
+        color: #495057; /* Dark grey color for text */
+    }
+
+    .icon-text i {
+        margin-right: 8px;
+    }
+
+    .table-hover tbody tr:hover {
+        box-shadow: inset 5px 0 0 #007bff; 
+    }
+
+    /* Override Bootstrap's table-striped styling with a modern zebra-striping effect */
+    .table tbody tr:nth-of-type(odd) {
+        background-color: #f2f2f2; /* Lighter background for odd rows */
+    }
+</style>
+
+<div class="container mt-4">
+    <h1>Gestion des Véhicules</h1>
+    <div class="mb-3 text-end">
+        <a href="{{ path('ajouter_vehicule') }}" class="btn btn-success"><i class="fas fa-plus"></i> Ajouter un véhicule</a>
+    </div>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Titre</th>
+                <th>Marque</th>
+                <th>Modèle</th>
+                <th>Description</th>
+                <th>Photo</th>
+                <th>Prix Journalier</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vehicule in vehicules %}
+            <tr>
+                <td>{{ vehicule.idVehicule }}</td>
+                <td>{{ vehicule.titre }}</td>
+                <td>{{ vehicule.marque }}</td>
+                <td>{{ vehicule.modele }}</td>
+                <td>{{ vehicule.description }}</td>
+                <td><img src="{{ vehicule.photo }}" alt="Photo de {{ vehicule.titre }}" class="img-fluid"></td>
+                <td>{{ vehicule.prixJournalier }} €</td>
+                <td>
+                    <a href="{{ path('modifier_vehicule', {'id': vehicule.idVehicule}) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
+                    <a href="{{ path('supprimer_vehicule', {'id': vehicule.idVehicule}) }}" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce véhicule ?');"><i class="fas fa-trash-alt"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

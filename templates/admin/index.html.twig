@@ -1,14 +1,86 @@
-
-{% extends 'base.html.twig' %}
+{% extends 'admin_base.html.twig' %}
 
 {% block title %}Tableau de bord{% endblock %}
 
-{% block body %}
-<div class="container mt-4">
-    <h1>Tableau de bord de l'administrateur</h1>
-    <!-- Autres éléments du tableau de bord -->
+{% block stylesheets %}
+{{ parent() }}
+<style>
+    .admin-dashboard-content {
+        padding: 20px;
+    }
 
-    <!-- Lien vers la page d'ajout de véhicule -->
-    <a href="{{ path('ajouter_vehicule') }}" class="btn btn-primary">Ajouter un Véhicule</a>
+    .dashboard-section {
+        margin-bottom: 20px;
+    }
+
+    .dashboard-banner {
+        padding: 15px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        color: white;
+    }
+
+    .dashboard-banner i {
+        font-size: 24px;
+        margin-right: 10px;
+    }
+
+    .dashboard-link {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .banner-gestion-membres {
+        background-color: #4CAF50;
+    }
+
+    .banner-gestion-vehicules {
+        background-color: #2196F3;
+    }
+
+    .banner-gestion-commandes {
+        background-color: #FFC107;
+    }
+
+    .banner-ajouter-vehicule {
+        background-color: #9C27B0;
+    }
+</style>
+{% endblock %}
+
+{% block admin_content %}
+<div class="admin-dashboard-content">
+    <h1>Tableau de bord de l'administrateur</h1>
+
+    <div class="dashboard-section">
+        <div class="dashboard-banner banner-gestion-membres">
+            <i class="fas fa-users" aria-hidden="true"></i>
+            <a href="" class="dashboard-link">Gestion des Membres</a>
+        </div>
+    </div>
+
+    <div class="dashboard-section">
+        <div class="dashboard-banner banner-gestion-vehicules">
+            <i class="fas fa-car" aria-hidden="true"></i>
+            <a href="{{ path('gestion_vehicules') }}" class="dashboard-link">Gestion des Véhicules</a>
+        </div>
+    </div>
+
+    <div class="dashboard-section">
+        <div class="dashboard-banner banner-gestion-commandes">
+            <i class="fas fa-file-invoice" aria-hidden="true"></i>
+            <a href="" class="dashboard-link">Gestion des Commandes</a>
+        </div>
+    </div>
+
+    <div class="dashboard-section">
+        <div class="dashboard-banner banner-ajouter-vehicule">
+            <i class="fas fa-plus" aria-hidden="true"></i>
+            <a href="{{ path('ajouter_vehicule') }}" class="dashboard-link">Ajouter un Véhicule</a>
+        </div>
+    </div>
 </div>
 {% endblock %}
