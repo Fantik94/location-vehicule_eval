@@ -52,7 +52,7 @@
             <h3>Admin Panel</h3>
             <a href="{{ path('admin_dashboard') }}" class="{% if app.request.attributes.get('_route') == 'admin_dashboard' %}active{% endif %}">Dashboard</a>
             <a href="">Gestion des Membres</a>
-            <a href="">Gestion des Commandes</a>
+            <a href="{{ path('gestion_commandes') }}">Gestion des Commandes</a>
             <a href="{{ path('gestion_vehicules') }}" class="{% if app.request.attributes.get('_route') == 'gestion_vehicules' %}active{% endif %}">Gestion des Véhicules</a>
         </div>
         <div class="admin-content">

@@ -1,0 +1,144 @@
+{% extends 'admin_base.html.twig' %}
+
+{% block title %}Gestion des Commandes{% endblock %}
+
+{% block stylesheets %}
+<style>
+    .admin-dashboard {
+        display: flex;
+        min-height: 100vh;
+    }
+
+    .sidebar {
+        flex: 0 0 250px;
+        background-color: #f8f9fa;
+        height: calc(100vh - 56px);
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        overflow-y: auto;
+    }
+
+    .sidebar h3 {
+        color: #007bff;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .sidebar a {
+        display: block;
+        padding: 10px 15px;
+        color: #333;
+        text-decoration: none;
+        border-radius: 4px;
+        margin-bottom: 5px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .sidebar a:hover, .sidebar a.active {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .admin-content {
+        flex-grow: 1;
+        padding: 20px;
+    }
+
+    .container {
+        background-color: #f9f9f9; 
+        border: none;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        border-radius: 8px;
+        padding-bottom: 20px; /* Add padding to bottom for better spacing */
+    }
+
+    h1 {
+        font-size: 1.75rem;
+        background-color: #FFC107; 
+        color: #ffffff;
+        padding: 16px 24px;
+        margin: 0 -24px 20px; /* Extend the header to the edges and add margin to the bottom */
+        border-radius: 8px 8px 0 0;
+    }
+
+    .table {
+        margin-bottom: 0;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f8f9fa;
+    }
+
+    .img-fluid {
+        max-height: 60px;
+        border-radius: 4px;
+    }
+
+    .btn-sm {
+        font-size: 0.875rem;
+    }
+
+    .table th {
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        background-color: #e9ecef; 
+        color: #495057; /* Dark grey color for text */
+    }
+
+    .table td {
+        vertical-align: middle;
+        color: #495057; /* Dark grey color for text */
+    }
+
+    .icon-text i {
+        margin-right: 8px;
+    }
+
+    .table-hover tbody tr:hover {
+        box-shadow: inset 5px 0 0 #007bff; 
+    }
+
+    /* Override Bootstrap's table-striped styling with a modern zebra-striping effect */
+    .table tbody tr:nth-of-type(odd) {
+        background-color: #f2f2f2; /* Lighter background for odd rows */
+    }
+</style>
+{% endblock %}
+
+{% block admin_content %}
+<div class="container mt-4">
+    <h1>Gestion des Commandes</h1>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID Commande</th>
+                <th>Client</th>
+                <th>Véhicule</th>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+                <th>Prix Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for commande in commandes %}
+            <tr>
+                <td>{{ commande.idCommande }}</td>
+                <td>{{ commande.idMembre }}</td>
+                <td>{{ commande.idVehicule }}</td>
+                <td>{{ commande.dateHeureDepart|date('d/m/Y') }}</td>
+                <td>{{ commande.dateHeureFin|date('d/m/Y') }}</td>
+                <td>{{ commande.prixTotal }} €</td>
+                <td>
+                    <a href="{{ path('modifier_commande', {'id': commande.idCommande}) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
+                    <a href="{{ path('supprimer_commande', {'id': commande.idCommande}) }}" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette commande ?');"><i class="fas fa-trash-alt"></i></a>
+                </td>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{# templates/commande/modifier_commande.html.twig #}
+
+{% extends 'admin_base.html.twig' %}
+
+{% block title %}Modifier Commande{% endblock %}
+
+{% block admin_content %}
+<div class="container mt-4">
+    <h1>Modifier Commande</h1>
+    {{ form_start(form) }}
+        <div class="form-group">
+            {{ form_label(form.dateHeureDepart, 'Date et Heure de Départ') }}
+            {{ form_widget(form.dateHeureDepart, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.dateHeureDepart) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.dateHeureFin, 'Date et Heure de Fin') }}
+            {{ form_widget(form.dateHeureFin, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.dateHeureFin) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.prixTotal, 'Prix Total') }}
+            {{ form_widget(form.prixTotal, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.prixTotal) }}
+        </div>
+        <button type="submit" class="btn btn-primary">Sauvegarder les modifications</button>
+    {{ form_end(form) }}
+</div>
+{% endblock %}
