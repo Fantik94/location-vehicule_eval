@@ -80,6 +80,7 @@
         <ul>
             <li><img src="{{ vehicle.photo }}" alt="Photo de {{ vehicle.titre }}" class="vehicle-photo"></li>
             <li>Véhicule: {{ vehicle.titre }}</li>
+            <li>Marque: {{ vehicle.marque }}</li>
             <li>Date de début: {{ reservation.dateHeureDepart|date('d/m/Y') }}</li>
             <li>Date de fin: {{ reservation.dateHeureFin|date('d/m/Y') }}</li>
             <li>Prix total: {{ reservation.prixTotal }} €</li>

@@ -38,10 +38,19 @@ class MembreType extends AbstractType
             ])
             ->add('civilite', ChoiceType::class, [
                 'choices' => [
-                    'Homme' => false,
-                    'Femme' => false,
+                    'Homme' => 1,
+                    'Femme' => 0,
                 ],
-                'required' => false,
+                'required' => true,
+            ])
+
+            ->add('statut', ChoiceType::class, [
+                'choices' => [
+                    'Membre' => 0,
+                    'Admin' => 1,
+                ],
+                'attr' => ['class' => 'form-control'],
+                'label' => 'Statut',
             ])
         ;
     }

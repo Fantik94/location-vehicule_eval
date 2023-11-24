@@ -100,6 +100,7 @@
         <h3>{{ vehicle.titre }}</h3>
         <p><strong>Marque:</strong> {{ vehicle.marque }}</p>
         <p><strong>Modèle:</strong> {{ vehicle.modele }}</p>
+        <p><strong>Description:</strong> {{ vehicle.description }}</p>
         <p class="vehicle-price">Prix journalier: {{ vehicle.prixJournalier }} €</p>
         <a href="{{ path('app_reservation', {
             'id': vehicle.idVehicule,

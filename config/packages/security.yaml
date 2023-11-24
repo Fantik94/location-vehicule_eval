@@ -44,6 +44,9 @@ security:
         - { path: ^/login, roles: PUBLIC_ACCESS }
         - { path: ^/register, roles: PUBLIC_ACCESS }
         - { path: ^/ajouter, roles: ROLE_ADMIN }
+        - { path: ^/gestion, roles: ROLE_ADMIN }
+        - { path: ^/gestion_commandes, roles: ROLE_ADMIN }
+        - { path: ^/gestion_membres, roles: ROLE_ADMIN }
         - { path: ^/search, roles: PUBLIC_ACCESS } 
         - { path: ^/, roles: PUBLIC_ACCESS } # Accès public à la page d'accueil
 

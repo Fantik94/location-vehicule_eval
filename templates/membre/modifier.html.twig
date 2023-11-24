@@ -1,0 +1,22 @@
+{# templates/membre/modifier.html.twig #}
+
+{% extends 'admin_base.html.twig' %}
+
+{% block title %}Modifier Membre{% endblock %}
+
+{% block admin_content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Modifier Membre</h1>
+    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+    <div class="row">
+        {{ form_row(form.pseudo, {'attr': {'class': 'form-control mb-3'}}) }}
+        {{ form_row(form.mdp, {'attr': {'class': 'form-control mb-3'}}) }}
+        {{ form_row(form.nom, {'attr': {'class': 'form-control mb-3'}}) }}
+        {{ form_row(form.prenom, {'attr': {'class': 'form-control mb-3'}}) }}
+        {{ form_row(form.email, {'attr': {'class': 'form-control mb-3'}}) }}
+        {{ form_row(form.civilite, {'attr': {'class': 'form-select mb-3'}}) }}
+    </div>
+    <button class="btn btn-primary">Sauvegarder les modifications</button>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

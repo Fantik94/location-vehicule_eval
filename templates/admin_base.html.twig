@@ -51,8 +51,8 @@
         <div class="sidebar">
             <h3>Admin Panel</h3>
             <a href="{{ path('admin_dashboard') }}" class="{% if app.request.attributes.get('_route') == 'admin_dashboard' %}active{% endif %}">Dashboard</a>
-            <a href="">Gestion des Membres</a>
-            <a href="{{ path('gestion_commandes') }}">Gestion des Commandes</a>
+            <a href="{{ path('gestion_membres') }}" class="{% if app.request.attributes.get('_route') == 'gestion_membres' %}active{% endif %}">Gestion des Membres</a>
+            <a href="{{ path('gestion_commandes') }}" class="{% if app.request.attributes.get('_route') == 'gestion_commandes' %}active{% endif %}">Gestion des Commandes</a>
             <a href="{{ path('gestion_vehicules') }}" class="{% if app.request.attributes.get('_route') == 'gestion_vehicules' %}active{% endif %}">Gestion des Véhicules</a>
         </div>
         <div class="admin-content">
