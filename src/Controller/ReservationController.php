@@ -56,8 +56,8 @@ class ReservationController extends AbstractController
         $prixTotal = $jours * $vehicule->getPrixJournalier();
 
         $commande = new Commande();
-        $commande->setIdMembre($user->getId());
-        $commande->setIdVehicule($vehicule->getIdVehicule());
+        $commande->setMembre($user); // Assurez-vous que cette méthode existe dans l'entité Commande
+        $commande->setVehicule($vehicule);
         $commande->setDateHeureDepart($dateDebut);
         $commande->setDateHeureFin($dateFin);
         $commande->setPrixTotal($prixTotal);
@@ -76,7 +76,7 @@ class ReservationController extends AbstractController
             throw $this->createNotFoundException('Commande non trouvée.');
         }
 
-        $vehicule = $entityManager->getRepository(Vehicule::class)->find($commande->getIdVehicule());
+        $vehicule = $entityManager->getRepository(Vehicule::class)->find($commande->getVehicule()->getIdVehicule());
 
         return $this->render('confirmation/index.html.twig', [
             'reservation' => $commande,

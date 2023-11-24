@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\VehiculeRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity(repositoryClass: VehiculeRepository::class)]
 class Vehicule
@@ -35,7 +37,14 @@ class Vehicule
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $date_enregistrement = null;
 
+    #[ORM\OneToMany(mappedBy: 'vehicule', targetEntity: Commande::class)]
+private Collection $commandes;
+
    
+    public function __construct()
+    {
+        $this->commandes = new ArrayCollection();
+    }
 
     public function getIdVehicule(): ?int
     {
@@ -125,5 +134,10 @@ class Vehicule
         $this->date_enregistrement = $date_enregistrement;
 
         return $this;
+    }
+
+    public function getCommandes(): Collection
+    {
+        return $this->commandes;
     }
 }

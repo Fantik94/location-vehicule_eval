@@ -50,7 +50,7 @@
         border: none;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
         border-radius: 8px;
-        padding-bottom: 20px; /* Add padding to bottom for better spacing */
+        padding-bottom: 20px;
     }
 
     h1 {
@@ -58,7 +58,7 @@
         background-color: #FFC107; 
         color: #ffffff;
         padding: 16px 24px;
-        margin: 0 -24px 20px; /* Extend the header to the edges and add margin to the bottom */
+        margin: 0 -24px 20px;
         border-radius: 8px 8px 0 0;
     }
 
@@ -83,12 +83,12 @@
         font-weight: 600;
         letter-spacing: 0.02em;
         background-color: #e9ecef; 
-        color: #495057; /* Dark grey color for text */
+        color: #495057;
     }
 
     .table td {
         vertical-align: middle;
-        color: #495057; /* Dark grey color for text */
+        color: #495057;
     }
 
     .icon-text i {
@@ -99,9 +99,16 @@
         box-shadow: inset 5px 0 0 #007bff; 
     }
 
-    /* Override Bootstrap's table-striped styling with a modern zebra-striping effect */
     .table tbody tr:nth-of-type(odd) {
-        background-color: #f2f2f2; /* Lighter background for odd rows */
+        background-color: #f2f2f2;
+    }
+
+    /* Style spécifique pour les images dans le tableau */
+    .table img {
+        width: 100px;   
+        height: 80px;   
+        object-fit: cover; 
+        border-radius: 4px;
     }
 </style>
 {% endblock %}
@@ -126,15 +133,14 @@
             {% for commande in commandes %}
             <tr>
                 <td>{{ commande.idCommande }}</td>
-                <td>{{ commande.idMembre }}</td>
-                <td>{{ commande.idVehicule }}</td>
+                <td>{{ commande.membre.nom }}  {{ commande.membre.prenom }}  <br/>({{ commande.membre.email }})</td>
+                <td><img src="{{ commande.vehicule.photo }}" class="img-fluid" alt="Photo de {{ commande.vehicule.titre }}"></td>
                 <td>{{ commande.dateHeureDepart|date('d/m/Y') }}</td>
                 <td>{{ commande.dateHeureFin|date('d/m/Y') }}</td>
                 <td>{{ commande.prixTotal }} €</td>
                 <td>
                     <a href="{{ path('modifier_commande', {'id': commande.idCommande}) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
                     <a href="{{ path('supprimer_commande', {'id': commande.idCommande}) }}" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette commande ?');"><i class="fas fa-trash-alt"></i></a>
-                </td>
                 </td>
             </tr>
             {% endfor %}
