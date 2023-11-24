@@ -22,7 +22,10 @@
                 {% if app.user %}
                     <div>
                         <span class="navbar-text text-white me-3">Bonjour, {{ app.user.prenom }}</span>
-                        <a class="nav-link d-inline text-white me-3" href="{{ path('app_search') }}">Liste des Véhicules</a>
+                        <!-- Lien vers la liste des véhicules uniquement pour les utilisateurs non-admins -->
+                        {% if 'ROLE_ADMIN' not in app.user.roles %}
+                            <a class="nav-link d-inline text-white me-3" href="{{ path('app_search') }}">Liste des Véhicules</a>
+                        {% endif %}
                         <!-- Lien vers le profil avec icône -->
                         <a class="nav-link d-inline text-white me-3" href="{{ path('app_profile') }}"><i class="fa fa-user" aria-hidden="true"></i></a>
                         <!-- Lien vers le backoffice pour les admins -->

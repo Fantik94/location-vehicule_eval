@@ -53,10 +53,9 @@ class ProfileController extends AbstractController
             // Redirection ou message flash après la sauvegarde
         }
 
-        $commandes = $this->commandeRepository->findBy(['id_membre' => $user->getId()]);
+        $commandes = $this->commandeRepository->findBy(['membre' => $user]);
         foreach ($commandes as $commande) {
-            $vehicule = $this->vehiculeRepository->find($commande->getIdVehicule());
-            $commande->vehicule = $vehicule;
+            $vehicule = $commande->getVehicule(); // Accéder directement à l'objet Vehicule associé
         }
 
         return $this->render('profile/index.html.twig', [
