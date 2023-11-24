@@ -39,12 +39,14 @@ security:
             # switch_user: true
     # Contrôle d'accès
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/login, roles: PUBLIC_ACCESS }
         - { path: ^/register, roles: PUBLIC_ACCESS }
         - { path: ^/ajouter, roles: ROLE_ADMIN }
         - { path: ^/gestion, roles: ROLE_ADMIN }
+        - { path: ^/membre, roles: ROLE_ADMIN }
+        - { path: ^/membres, roles: ROLE_ADMIN }
         - { path: ^/gestion_commandes, roles: ROLE_ADMIN }
         - { path: ^/gestion_membres, roles: ROLE_ADMIN }
         - { path: ^/search, roles: PUBLIC_ACCESS } 
